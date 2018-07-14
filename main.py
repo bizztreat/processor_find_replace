@@ -1,2 +1,3 @@
+import os
 
-print("Hello world from python")
+print("\n".join(os.listdir("/data/in/tables")))
