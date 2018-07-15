@@ -1,0 +1,41 @@
+{
+	"title": "Parameters",
+	"type": "object",
+	"properties": {
+		"find": {
+			"title": "Find",
+			"type": "string",
+			"propertyOrder": 1,
+			"default": "\"\"\"",
+			"description": "The needle in your haystack"
+		},
+		"replacement": {
+			"title": "Replacement",
+			"type": "string",
+			"propertyOrder": 2,
+			"default": "\"\"",
+			"description": "The replacement for the needle"
+		},
+		"encoding": {
+			"title": "Encoding",
+			"type": "string",
+			"propertyOrder": 3,
+			"default": "utf-8",
+			"description": "Input tables' encoding"
+		},
+		"debug": {
+			"title": "Debug mode",
+			"type": "integer",
+			"enum": [0,
+			1],
+			"default": 0,
+			"description": "0 - standard output, 1 - more output",
+			"propertyOrder": 4
+		}
+	},
+	"required": ["find",
+		"replacement",
+		"encoding",
+		"debug"
+		]
+}
