@@ -3,4 +3,7 @@
 
 import os
 
+if (not os path.exists("/data/in/tables")): os.makedirs("/data/in/tables")
+
+
 print("\n".join(os.listdir("/data/in/tables")))
