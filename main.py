@@ -12,7 +12,16 @@ import json
 
 print("Starting processor Find & Replace")
 print("Will process following tables:")
-print("\n".join(os.listdir("in/tables")))
+csv_filelist = find_csv_files("/data/in/tables")
+print("\n".join(csv_filelist))
+
+def find_csv_files(basedir):
+	filelist = []
+	for dirpath, dirnames, files in os.walk(basedir):
+		for f in files:
+			if f.lower().endswith(".csv"):
+				filelist.append(os.path.join(dirpath,f))
+	return filelist
 
 
 if not os.path.exists("/data/config.json"):
@@ -35,9 +44,9 @@ else:
 	config_encoding = config["parameters"]["encoding"]
 	debug_mode = int(config["parameters"]["debug"])
 
-for table_name in os.listdir("in/tables"):
-	table_path = os.path.join("in/tables",table_name)
-	output_path = os.path.join("out/tables",table_name)
+for table_path in csv_filelist:
+	table_name = os.path.split(table_path)[-1]
+	output_path = os.path.join("/data/out/tables",table_name)
 	print("Processing file %s..."%table_path)
 	with open(table_path,"rt",encoding=config_encoding) as infile, open(output_path,"wt",encoding=config_encoding) as outfile:
 		for inline in infile:
