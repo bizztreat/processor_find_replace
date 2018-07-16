@@ -51,8 +51,10 @@ for table_path in csv_filelist:
 	if debug_mode: print("Processing file %s..."%table_path)
 	with open(table_path,"rt",encoding=config_encoding) as infile, open(output_path,"wt",encoding=config_encoding) as outfile:
 		lineno = 0
+		replaced = 0
 		for inline in infile:
+			replaced+=inline.count(config_find)
 			outfile.write(inline.replace(config_find,config_replacement))
 			lineno+=1
-		if debug_mode: print("Processed %d lines"%lineno)
+		if debug_mode: print("Processed %d lines, replaced %d occurrences"%(lineno,replaced))
 		
