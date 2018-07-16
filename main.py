@@ -5,15 +5,15 @@ import os
 import csv
 import json
 
-if (not os.path.exists("/data/out/tables")): os.makedirs("/data/out/tables")
-if (not os.path.exists("in/tables")): os.makedirs("in/tables")
+
+
+#if (not os.path.exists("/data/out/tables")): os.makedirs("/data/out/tables")
+#if (not os.path.exists("in/tables")): os.makedirs("in/tables")
 
 print("Starting processor Find & Replace")
 print("Will process following tables:")
 print("\n".join(os.listdir("in/tables")))
 
-for cd, d, f in os.walk("/"):
-	print(cd,d,f)
 
 if not os.path.exists("/data/config.json"):
 	#Interactive mode
