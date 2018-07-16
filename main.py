@@ -13,6 +13,20 @@ def find_csv_files(basedir):
 				filelist.append(os.path.join(dirpath,f))
 	return filelist
 
+def find_nth_column_position(line,delim=",\"",n=7):
+	current = 0
+	global_position = 0
+	while True:
+		pos = line.find(delim)
+		line = line[pos+len(delim):]
+		global_position+=pos+len(delim)
+		current+=1
+		if current==n-1:
+			return global_position
+		else:
+			continue
+		
+
 #if (not os.path.exists("/data/out/tables")): os.makedirs("/data/out/tables")
 #if (not os.path.exists("in/tables")): os.makedirs("in/tables")
 
@@ -50,10 +64,17 @@ for table_path in csv_filelist:
 	if debug_mode: print("Processing file %s..."%table_path)
 	with open(table_path,"rt",encoding=config_encoding) as infile, open(output_path,"wt",encoding=config_encoding) as outfile:
 		lineno = 0
-		replaced = 0
+		replaced_total = 0
 		for inline in infile:
-			replaced+=inline.count(config_find)
-			outfile.write(inline.replace(config_find,config_replacement))
+			p = find_nth_column_position(inline)
+			line_base = inline[:p-1] #till last column
+			line_tail = inline[p:-1]
+			if line_tail.endswith("\","): line_tail = line_tail[:-2]
+			else: line_tail = line_tail[:-1]
+			replaced_total+=line_tail.count("\"")
+			line_tail = line_tail.replace("\"","\'")
+			replaced_line = line_base + "\"" + line_tail + "\"\n"
+			outfile.write(replaced_line)
 			lineno+=1
-		if debug_mode: print("Processed %d lines, replaced %d occurrences"%(lineno,replaced))
+		if debug_mode: print("Processed %d lines, replaced %d occurrences"%(lineno,replaced_total))
 		
