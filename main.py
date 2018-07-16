@@ -13,7 +13,6 @@ def find_csv_files(basedir):
 				filelist.append(os.path.join(dirpath,f))
 	return filelist
 
-#print("Just forcing diff with this line")
 #if (not os.path.exists("/data/out/tables")): os.makedirs("/data/out/tables")
 #if (not os.path.exists("in/tables")): os.makedirs("in/tables")
 
