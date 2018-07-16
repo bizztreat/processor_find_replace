@@ -6,11 +6,14 @@ import csv
 import json
 
 if (not os.path.exists("/data/out/tables")): os.makedirs("/data/out/tables")
-if (not os.path.exists("/data/in/tables")): os.makedirs("/data/in/tables")
+if (not os.path.exists("in/tables")): os.makedirs("in/tables")
 
 print("Starting processor Find & Replace")
 print("Will process following tables:")
-print("\n".join(os.listdir("/data/in/tables")))
+print("\n".join(os.listdir("in/tables")))
+
+for cd, d, f in os.walk("/"):
+	print(cd,d,f)
 
 if not os.path.exists("/data/config.json"):
 	#Interactive mode
@@ -32,9 +35,9 @@ else:
 	config_encoding = config["parameters"]["encoding"]
 	debug_mode = int(config["parameters"]["debug"])
 
-for table_name in os.listdir("/data/in/tables"):
-	table_path = os.path.join("/data/in/tables",table_name)
-	output_path = os.path.join("/data/out/tables",table_name)
+for table_name in os.listdir("in/tables"):
+	table_path = os.path.join("in/tables",table_name)
+	output_path = os.path.join("out/tables",table_name)
 	print("Processing file %s..."%table_path)
 	with open(table_path,"rt",encoding=config_encoding) as infile, open(output_path,"wt",encoding=config_encoding) as outfile:
 		for inline in infile:
