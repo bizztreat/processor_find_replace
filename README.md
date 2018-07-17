@@ -5,10 +5,13 @@ A simple find and replace processor for [Keboola Connection](https://connection.
 It walks through .csv files within the /data/in/tables directory (and subdirectories) and replaces searched string with replacement line by line.
 
 ## Configuration parameters
-**find**  The searched needle. *example: foo*
-**replacement** The replacement text. *example: bar*
-**encoding**  The input files encoding. *example: utf-8*
-**debug** 0 for standard debug, 1 for hightened verbosity. *example: 0*
+
+|**Parameter**   |**Description**                                  |**Example**|
+--------------------------------------------------------------------------------
+|**find**        |The searched needle.                             |*foo*      |
+|**replacement** |The replacement text.                            |*bar*      |
+|**encoding**    |The input files encoding.                        |*utf-8*    |
+|**debug**       |0 for standard debug, 1 for hightened verbosity. |*0*        |
 
 ### Example configuration
 
