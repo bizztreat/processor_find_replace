@@ -7,7 +7,7 @@ It walks through .csv files within the /data/in/tables directory (and subdirecto
 ## Configuration parameters
 
 |**Parameter**   |**Description**                                  |**Example**|
---------------------------------------------------------------------------------
+|----------------|-------------------------------------------------|-----------|
 |**find**        |The searched needle.                             |*foo*      |
 |**replacement** |The replacement text.                            |*bar*      |
 |**encoding**    |The input files encoding.                        |*utf-8*    |
